@@ -4,8 +4,7 @@ on:
   # run every day at 06:00 UTC ≈ 02:00 Chile time
   schedule:
     - cron:  '0 6 * * *'
-  # plus a manual “Run workflow” button
-  workflow_dispatch:
+  workflow_dispatch:  # adds a manual “Run workflow” button
 
 jobs:
   scrape:
@@ -39,5 +38,12 @@ jobs:
             repos = "https://cloud.r-project.org"
           )'
 
+      # ────────── DEBUG: show raw bytes of SUPABASE_HOST ──────────
+      - name: Debug host value
+        run: |
+          printf 'Host bytes: '
+          printf '%s' "$SUPABASE_HOST" | od -An -t x1
+      # ─────────────────────────────────────────────────────────────
+
       - name: Run scraper
-        run: Rscript permaweb_scraper2.R   # ← change if your file has a different name
+        run: Rscript permaweb_scraper2.R   # change if your script has a different name
