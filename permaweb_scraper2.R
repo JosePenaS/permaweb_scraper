@@ -42,10 +42,12 @@ pg_par <- list(
   host     = trimws(Sys.getenv("SUPABASE_HOST",
                                "aws-0-us-east-2.pooler.supabase.com")),
   port     = as.integer(Sys.getenv("SUPABASE_PORT", "5432")),
-  dbname   = Sys.getenv("SUPABASE_DB", "postgres"),
-  user     = Sys.getenv("SUPABASE_USER", "postgres.zdizrqyeuyqdlmvgadkm"),
-  password = Sys.getenv("SUPABASE_PWD")
+  dbname   = trimws(Sys.getenv("SUPABASE_DB", "postgres")),
+  user     = trimws(Sys.getenv("SUPABASE_USER",
+                               "postgres.zdizrqyeuyqdlmvgadkm")),
+  password = trimws(Sys.getenv("SUPABASE_PWD"))
 )
+
 
 con <- dbConnect(
   RPostgres::Postgres(),
