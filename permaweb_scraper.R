@@ -39,12 +39,14 @@ front <- front |>
 # ── 3.  connect to Supabase Postgres ──────────────────────────────────────────
 # Use the connection‑pool host in Supabase (the one you originally tested)
 pg_par <- list(
-  host     = Sys.getenv("SUPABASE_HOST", "aws-0-us-east-2.pooler.supabase.com"),
+  host     = trimws(Sys.getenv("SUPABASE_HOST",
+                               "aws-0-us-east-2.pooler.supabase.com")),
   port     = as.integer(Sys.getenv("SUPABASE_PORT", "5432")),
   dbname   = Sys.getenv("SUPABASE_DB", "postgres"),
   user     = Sys.getenv("SUPABASE_USER", "postgres.zdizrqyeuyqdlmvgadkm"),
-  password = Sys.getenv("SUPABASE_PWD")       # ← no default for security
+  password = Sys.getenv("SUPABASE_PWD")
 )
+
 
 con <- dbConnect(
   RPostgres::Postgres(),
