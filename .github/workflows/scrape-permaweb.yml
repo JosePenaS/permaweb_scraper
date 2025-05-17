@@ -32,5 +32,5 @@ jobs:
           ))'
 
       - name: Run scraper
-        run: Rscript scrape_permaweb2.R
+        run: Rscript permaweb_scraper.R
 
